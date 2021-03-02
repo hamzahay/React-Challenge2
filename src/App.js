@@ -1,12 +1,12 @@
 import React from 'react'
-import PokemonCard from './PokemonCard'
+import './App.css'
+import PokemonCard from './PokemonCard.js'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       pokemons: [],
-      pokemonsDetail: [],
       test: ['test', 'eas']
     }
   }
@@ -22,16 +22,11 @@ class App extends React.Component {
   }
 
   render () {
+    const pokemonCard = this.state.pokemons.map(pokemon => <PokemonCard key={pokemon.name} pokemon={pokemon}/>)
 
     return (
-      <div>
-        <h1>test hello hello</h1>
-        <h1> test 2</h1>
-        <ul>
-          { this.state.pokemons.map((pokemon) => 
-            <li key={pokemon.name}>{ pokemon.name }</li>
-            )}
-        </ul>
+      <div className="card-container">
+          {pokemonCard}
       </div>
     )
   }
