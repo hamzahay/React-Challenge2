@@ -1,0 +1,22 @@
+.navbar {
+  background-color: rgb(37, 37, 37);
+  display: flex;
+  color: white;
+  padding: 10px 15px;
+  top: 0;
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.navbar h1 {
+  margin: 0px;
+  cursor: pointer;
+}
+
+.navbar h1:hover {
+  transition: 0.25s ease;
+  text-shadow: 0px 0px 2px white;
+  transform: scale(1.05);
+}
