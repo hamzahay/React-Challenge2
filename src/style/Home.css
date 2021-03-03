@@ -1,8 +1,16 @@
-.App {
+.Home {
   display: flex;
   flex-direction: column;
   margin-top: 65px;
   z-index: 1;
+}
+
+.loading-img {
+  display: block;
+  margin: 0px auto;
+  margin-top: 23vh;
+  height: 200px;
+  width: auto;
 }
 
 .card-container{

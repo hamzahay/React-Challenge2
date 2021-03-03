@@ -1,23 +1,24 @@
 import React from 'react'
 import useFetch from '../hooks/useFetch'
 import '../style/pokemonCard.css'
+import { useHistory } from 'react-router-dom'
 
 function PokemonCard (props) {
 
-  const [data, loading] = useFetch(props.pokemon.url)
+  const pokemon = props.pokemon
+  const history = useHistory()
+
+  function toDetail () {
+    history.push(`/pokemon/${pokemon.id}`)
+  }
 
   return (
-    <div>
-      { loading === false? 
-        <div className="card">
-          <div className="card-top">
-            <h5 className="name">{data.name}
-            </h5></div>
-          { data.sprites && <img className="card-img" src={data.sprites.front_default} alt="pokemon_image"></img> }
-        </div>
-        :
-        <img src="https://media.giphy.com/media/31vamYdZV5ISQ/giphy.gif" alt="loading ..."></img>
-      }
+    <div className="card" onClick={toDetail}>
+      <div className="card-top">
+        <h5 className="name">{pokemon.name}
+        </h5>
+      </div>
+      { pokemon.sprites && <img className="card-img" src={pokemon.sprites} alt="pokemon_image"></img> }
     </div>
   )
 }
