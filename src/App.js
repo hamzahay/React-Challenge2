@@ -2,6 +2,7 @@ import React from 'react'
 import Home from './pages/Home.js'
 import Navbar from './components/Navbar'
 import Pokemon from './pages/Pokemon'
+import Favorites from './pages/Favorites'
 import { Route, Switch } from 'react-router-dom'
 
 function App () {
@@ -10,6 +11,7 @@ function App () {
       <Navbar />
       <Switch>
         <Pokemon path="/pokemon/:id" />
+        <Favorites path="/favorites" />
         <Home path="/" />
       </Switch>
     </Route>

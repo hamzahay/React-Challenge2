@@ -27,8 +27,27 @@
   margin: 0px;
   padding: 0px;
   display: flex;
+  justify-content: space-between;
+  overflow: visible;
+  max-height: 32px;
 }
 
 .card-img {
   width: 175px;
+}
+
+.fav-img {
+  height: 25px;
+  margin: 5px 5px 0px 0px;
+  border-radius: 33% 33% 50% 50%;
+  display: none;
+}
+
+.card:hover .fav-img {
+  transition: 0.25s ease;
+  display: block;
+}
+
+.fav-img:hover {
+  transform: scale(1.1);
 }

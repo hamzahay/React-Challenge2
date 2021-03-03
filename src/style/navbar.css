@@ -1,6 +1,7 @@
 .navbar {
   background-color: rgb(37, 37, 37);
   display: flex;
+  justify-content: space-between;
   color: white;
   padding: 10px 15px;
   top: 0;
@@ -10,12 +11,19 @@
   z-index: 2;
 }
 
-.navbar h1 {
+.navbar h1, .navbar h3 {
   margin: 0px;
   cursor: pointer;
+  text-align: center;
+  align-content: center;
+  margin: auto 0px;
 }
 
-.navbar h1:hover {
+.navbar h3 {
+  margin-right: 35px;
+}
+
+.navbar h1:hover, .navbar h3:hover {
   transition: 0.25s ease;
   text-shadow: 0px 0px 2px white;
   transform: scale(1.05);

@@ -10,9 +10,14 @@ export default function Navbar () {
     history.push('/')
   }
 
+  function goFavorites () {
+    history.push('/favorites')
+  }
+
   return (
     <div className="navbar">
       <h1 onClick={goHome}>PokePoke</h1>
+      <h3 onClick={goFavorites}>Favorites</h3>
     </div>
   )
 }
