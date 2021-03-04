@@ -35,10 +35,12 @@ function PokemonCard (props) {
   function removeFav () {
     if (favorite) {
       const newFav = favorites.slice()
-    const index = newFav.map(fav => fav.id).indexOf(pokemon.id)
-    if (index > -1) newFav.splice(index, 1)
-    dispatch(removeFavorite(newFav))
-    setFavorite(false)
+      const index = newFav.map(fav => fav.id).indexOf(pokemon.id)
+      if (index > -1) {
+        newFav.splice(index, 1)
+        dispatch(removeFavorite(newFav))
+        setFavorite(false)
+      }
     }
   }
 

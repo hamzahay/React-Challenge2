@@ -7,14 +7,20 @@ import { Route, Switch } from 'react-router-dom'
 
 function App () {
   return (
-    <Route>
+    <div>
       <Navbar />
       <Switch>
-        <Pokemon path="/pokemon/:id" />
-        <Favorites path="/favorites" />
-        <Home path="/" />
+        <Route path="/pokemon/:id">
+          <Pokemon />
+        </Route>
+        <Route path="/favorites">
+          <Favorites />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
       </Switch>
-    </Route>
+    </div>
   )
 }
 

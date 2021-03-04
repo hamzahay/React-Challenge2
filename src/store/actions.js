@@ -20,16 +20,23 @@ export function fetchPokemons () {
         for(const key in data.types) {
           types.push(data.types[key].type.name)
         }
+        let stats = []
+        for (const key in data.stats) {
+          stats.push({ 
+            baseStat: data.stats[key].base_stat,
+            statName: data.stats[key].stat.name
+          })
+        }
         const pokemonData = {
           id: data.id,
           name: data.name,
           url: pokemon.url,
           sprites: data.sprites.front_default,
           originalArt: data.sprites.other['official-artwork'].front_default,
-          types: types
+          types: types,
+          stats: stats
         }
         newData.push(pokemonData)
-        console.log(newData, 'newData')
       }
       dispatch(setNewPokemons(newData))
       dispatch(setPokemonLoading(false))
@@ -45,4 +52,8 @@ export function addFavorite (payload) {
 
 export function removeFavorite (payload) {
   return { type: 'FAVORITES/REMOVEFAVORITE', payload}
+}
+
+export function setSearch (payload) {
+  return { type: 'SEARCH/SETSEARCH', payload}
 }

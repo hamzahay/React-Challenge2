@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import '../style/Home.css'
 import PokemonCard from '../components/PokemonCard.js'
-import useFetch from '../hooks/useFetch'
 import { useSelector, useDispatch } from 'react-redux'
-import { setNewPokemons, fetchPokemons } from '../store/actions'
+import { fetchPokemons } from '../store/actions'
 
 function App () {
 
