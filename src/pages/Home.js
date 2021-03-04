@@ -3,48 +3,18 @@ import '../style/Home.css'
 import PokemonCard from '../components/PokemonCard.js'
 import useFetch from '../hooks/useFetch'
 import { useSelector, useDispatch } from 'react-redux'
-import { setNewPokemons } from '../store/actions'
+import { setNewPokemons, fetchPokemons } from '../store/actions'
 
 function App () {
 
   const dispatch = useDispatch()
-  const pokemonsData = useSelector(state => state.pokemons)
-  const [data] = useFetch('https://pokeapi.co/api/v2/pokemon?limit=151')
+  const pokemonsData = useSelector(state => state.pokemons.pokemons)
   const [show, setShow] = useState({ start: 0, end: 12 })
-  const [loading, setLoading] = useState(false)
-  const [mount, setMount] = useState(false)
+  const loading = useSelector(state => state.pokemons.loading)
 
   useEffect(() => {
-    if (data.results && mount) {
-      setLoading(true)
-      getData(data)
-    } else {
-      setMount(true)
-    }
-  }, [data])
-
-  async function getData (data) {
-    const newData = []
-    for (const pokemon of data.results) {
-      const res = await fetch(pokemon.url)
-      const data = await res.json()
-      let types = []
-      for(const key in data.types) {
-        types.push(data.types[key].type.name)
-      }
-      const pokemonData = {
-        id: data.id,
-        name: data.name,
-        url: pokemon.url,
-        sprites: data.sprites.front_default,
-        originalArt: data.sprites.other['official-artwork'].front_default,
-        types: types
-      }
-      newData.push(pokemonData)
-    }
-    dispatch(setNewPokemons(newData))
-    setLoading(false)
-  }
+    dispatch(fetchPokemons())
+  }, [])
 
   function next () {
     setShow({ start: show.end, end: show.end + 12})
@@ -58,8 +28,10 @@ function App () {
   
   const showContent = pokemonsData.slice(show.start, show.end)
   const pokemonCard = showContent.map(pokemon => <PokemonCard key={pokemon.name} pokemon={pokemon}/>)
-  console.log(showContent.length)
-  const content = (
+
+  if (loading) return <img className="loading-img" src="https://media.giphy.com/media/31vamYdZV5ISQ/giphy.gif" alt="Loading...  "></img>
+
+  return (
     <div className="Home">
       <div className="card-container">
         { pokemonCard }
@@ -68,16 +40,6 @@ function App () {
         { show.start - 12 >= 0 ? <button className="nav-btn" onClick={previous}>Previous</button>  : '' }
         { show.start + 12 <= pokemonsData.length ? <button className="nav-btn" onClick={next}>Next</button> : ''}
       </div>
-    </div>
-  )
-
-  return (
-    <div>
-      { !loading ? 
-        content
-        : 
-        <img className="loading-img" src="https://media.giphy.com/media/31vamYdZV5ISQ/giphy.gif" alt="Loading...  "></img>
-      }
     </div>
   )
 }

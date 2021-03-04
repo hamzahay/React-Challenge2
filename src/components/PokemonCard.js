@@ -9,7 +9,7 @@ import { addFavorite, removeFavorite } from '../store/actions'
 function PokemonCard (props) {
 
   const dispatch = useDispatch()
-  const favorites = useSelector(state => state.favorites)
+  const favorites = useSelector(state => state.favorites.favorites)
   const pokemon = props.pokemon
   const history = useHistory()
   const [favorite, setFavorite ] = useState(false)
@@ -27,15 +27,19 @@ function PokemonCard (props) {
   }
 
   function addFav () {
-    dispatch(addFavorite({ id: pokemon.id }))
+    if (!favorite) {
+      dispatch(addFavorite({ id: pokemon.id }))
+    }
   }
 
   function removeFav () {
-    const newFav = favorites.slice()
+    if (favorite) {
+      const newFav = favorites.slice()
     const index = newFav.map(fav => fav.id).indexOf(pokemon.id)
     if (index > -1) newFav.splice(index, 1)
     dispatch(removeFavorite(newFav))
     setFavorite(false)
+    }
   }
 
   return (
