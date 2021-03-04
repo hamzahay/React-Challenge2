@@ -9,7 +9,9 @@ function Favorites () {
   const pokemons = useSelector(state => state.pokemons.pokemons)
   const [favoritesData, setData] = useState([])
   const [show, setShow] = useState({ start: 0, end: 12 })
+  const [showData, setShowData] = useState([])
   const [loading, setLoading] = useState(false)
+  const filter = useSelector(state => state.pokemons.filter)
 
   useEffect(() => {
     setLoading(true)
@@ -35,9 +37,14 @@ function Favorites () {
     document.documentElement.scrollTop = 0
   }
 
-  const showContent = favoritesData.slice(show.start, show.end)
+  useEffect(() => {
+    const newData = favoritesData.filter(filterData => filterData.name.includes(filter))
+    setShowData(newData)
+  }, [filter, favoritesData])
+
+  const showContent = showData.slice(show.start, show.end)
   const pokemonCard = showContent.map(pokemon => <PokemonCard key={pokemon.name} pokemon={pokemon}/>)
-  
+
   if (loading) return <img className="loading-img" src="https://media.giphy.com/media/31vamYdZV5ISQ/giphy.gif" alt="Loading...  "></img>
 
   return (
@@ -47,7 +54,7 @@ function Favorites () {
       </div>
       <div className="btn-container">
         { show.start - 12 >= 0 ? <button className="nav-btn" onClick={previous}>Previous</button>  : '' }
-        { show.start + 12 <= favoritesData.length ? <button className="nav-btn" onClick={next}>Next</button> : ''}
+        { show.start + 12 <= showData.length ? <button className="nav-btn" onClick={next}>Next</button> : ''}
       </div>
     </div>
   )

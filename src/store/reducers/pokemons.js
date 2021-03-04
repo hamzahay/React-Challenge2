@@ -1,6 +1,7 @@
 const initialState = {
   pokemons: [],
-  loading: false
+  loading: false,
+  filter: ''
 }
 
 export default function pokemonsReducer (state = initialState, action) {
@@ -11,6 +12,8 @@ export default function pokemonsReducer (state = initialState, action) {
       return { ...state, pokemons: payload }
     case 'POKEMONS/SETLOADING':
       return { ...state, loading: payload }
+    case 'POKEMONS/SETFILTER':
+      return { ...state, filter: payload }
     default:
       return state
   }

@@ -58,45 +58,4 @@ function PokemonCard (props) {
   )
 }
 
-/*
-  useEffect(() => {
-    setLoading(true)
-    fetch(props.pokemon.url)
-      .then(res => res.json())
-      .then(pokemonData => {
-        console.log(pokemonData)
-        setPokemon(pokemonData)})
-      .finally(() => setLoading(false))
-  }, [props])
-  */
-
-/*
-class PokemonCard extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      pokemon: {}
-    }
-  }
-
-  componentDidMount () {
-    fetch(this.props.pokemon.url)
-    .then(res => res.json())
-    .then(pokemonData => {
-      this.setState({
-        pokemon: pokemonData
-      })
-    })
-  }
-
-  render () {
-    return (
-      <div className="card">
-        <h2 className="name">{this.state.pokemon.name}</h2>
-      </div>
-    )
-  }
-}
-*/
-
 export default PokemonCard

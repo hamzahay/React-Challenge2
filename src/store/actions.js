@@ -6,6 +6,10 @@ export function setPokemonLoading (payload) {
   return  { type: 'POKEMONS/SETLOADING', payload }
 }
 
+export function setFilter (payload) {
+  return  { type: 'POKEMONS/SETFILTER', payload }
+}
+
 export function fetchPokemons () {
   return async (dispatch) => {
     try {
@@ -52,8 +56,4 @@ export function addFavorite (payload) {
 
 export function removeFavorite (payload) {
   return { type: 'FAVORITES/REMOVEFAVORITE', payload}
-}
-
-export function setSearch (payload) {
-  return { type: 'SEARCH/SETSEARCH', payload}
 }

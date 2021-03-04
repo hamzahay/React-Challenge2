@@ -37,17 +37,11 @@
 }
 
 .search-bar {
-  height: 38px;
-  width: 275px;
+  height: 35px;
+  width: 375px;
   border: none;
-  border-radius: 5px 0px 0px 5px;
-}
-
-.search-btn {
-  height: 40px;
-  border: none;
-  border-radius: 0px 5px 5px 0px;
-  cursor: pointer;
+  padding: 0px 5px;
+  border-radius: 5px;
 }
 
 .search-btn:hover {
